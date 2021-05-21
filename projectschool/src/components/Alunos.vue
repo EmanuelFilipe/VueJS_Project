@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>{{titulo}}</h1>
-    <input type="text" placeholder="Nome do Aluno" v-model="nome" @keyup.enter="addAluno()">
+    <div>
+      <input type="text" placeholder="Nome do Aluno" v-model="nome" @keyup.enter="addAluno()">&nbsp;
+      <button class="btn btn-input" @click="addAluno()">Adicionar</button>
+    </div>
     
     <div style="margin-top: 10px;">
       <table border="1px">
@@ -17,7 +20,7 @@
             <!-- <td>{{aluno.id}}</td> -->
             <td>{{aluno.nome}}</td>
             <td>
-              <button class="btn" @click="remover()">Remover</button>
+              <button class="btn btn-danger" @click="remover(aluno)">Remover</button>
             </td>
           </tr>
         </tbody>
@@ -47,6 +50,11 @@ export default {
       }
       this.alunos.push(_aluno);
       this.nome = '';
+    },
+
+    remover(aluno){
+       let indice = this.alunos.indexOf(aluno);
+       this.alunos.splice(indice, 1);
     }
   },
 }
@@ -54,5 +62,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  input{
+    border: 0;
+    padding: 20px;
+    font-size: 1.3em;
+    color: #687f7f;
+    display: inline;
+  }
 
+  .btn-input{
+    border: 0px;
+    padding: 20px;
+    font-size: 1.3em;
+    background-color: rgb(116, 115, 115);
+    display: inline;
+  }
+
+  .btn-input:hover{
+    padding: 20px;
+    margin: 0px;
+    border: 0px;
+  }
 </style>
