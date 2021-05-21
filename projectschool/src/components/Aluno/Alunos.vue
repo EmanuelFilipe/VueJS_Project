@@ -1,43 +1,54 @@
 <template>
   <div>
-    <h1>{{titulo}}</h1>
+    <!-- texto="Aluno" || é o nome do parâmentro que o componente deve receber -->
+    <Titulo texto="Aluno"/> 
     <div>
       <input type="text" placeholder="Nome do Aluno" v-model="nome" @keyup.enter="addAluno()">&nbsp;
       <button class="btn btn-input" @click="addAluno()">Adicionar</button>
     </div>
     
     <div style="margin-top: 10px;">
-      <table border="1px">
+      <table>
         <thead>
           <th>Mat.</th>
           <th>Nome</th>
           <th>Opções</th>
         </thead>
-        <tbody>
+        <tbody v-if="alunos.length">
           <!-- :key="index" cada linha da tabela terá uma chave distinta -->
           <tr v-for="(aluno, index) in alunos" :key="index">
             <td>{{index + 1}}</td>
             <!-- <td>{{aluno.id}}</td> -->
-            <td>{{aluno.nome}}</td>
+            <td>{{aluno.nome}} {{aluno.sobrenome}}</td>
             <td>
               <button class="btn btn-danger" @click="remover(aluno)">Remover</button>
             </td>
           </tr>
         </tbody>
+        <tfoot v-else>
+          <tr><td colspan="3">Nenhum Aluno encontrado</td></tr>
+        </tfoot>
       </table>
     </div>
   </div>
 </template>
 
 <script>
+import Titulo from '../_Shared/Titulo';
+
 export default {
+  components:{
+    Titulo
+  },
   //o data sempre tem que ter um return
   data(){
     return {
       titulo: 'Aluno',
       nome: '',
       alunos: [
-        { id: 1, nome: 'Filipe' }, { id: 2, nome: 'Lucas' }, { id: 3, nome: 'Gustavo' }
+        { id: 1, nome: 'Filipe', sobrenome: 'Silva' }, 
+        { id: 2, nome: 'Lucas', sobrenome: 'Silva' }, 
+        { id: 3, nome: 'Gustavo', sobrenome: 'Pereira' }
       ]
     }
   },
@@ -83,4 +94,6 @@ export default {
     margin: 0px;
     border: 0px;
   }
+
+  
 </style>
