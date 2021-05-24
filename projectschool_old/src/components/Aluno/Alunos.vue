@@ -52,20 +52,34 @@ export default {
       ]
     }
   },
+  // created(){
+  //   this.$http.get('http://localhost:3000/alunos')
+  //             .then(res => res.json())
+  //             .then(alunos => this.alunos = alunos) //alunos é o retorno da linha acima 'res.json()'
+  // },
   props: {
   },
   methods: {
     addAluno() {
       let _aluno = {
-        nome: this.nome
+        nome: this.nome,
+        sobrenome: ''
       }
-      this.alunos.push(_aluno);
-      this.nome = '';
+
+      this.$http.post('http://localhost:3000/alunos', _aluno)
+                .then(res => res.json())
+                  .then(alunoRetornado => {
+                    this.alunos.push(alunoRetornado);
+                    this.nome = '';
+                  })
     },
 
     remover(aluno){
-       let indice = this.alunos.indexOf(aluno);
-       this.alunos.splice(indice, 1);
+      this.$http.delete(`http://localhost:3000/alunos/${aluno.id}`)
+                .then(() => {
+                  let indice = this.alunos.indexOf(aluno);
+                  this.alunos.splice(indice, 1);
+                })
     }
   },
 }
