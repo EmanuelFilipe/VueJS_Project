@@ -6,8 +6,7 @@
 
 <script>
     export default {
-        // criando variavel para receber como parâmetro
-        props:{
+        props: {
             texto: String
         }
     }
