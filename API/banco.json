@@ -1,14 +1,36 @@
 {
+  "professores": [
+    { 
+      "id": 1, 
+      "nome": "Robson"
+    },
+    { 
+      "id": 2, 
+      "nome": "Joao"
+    },
+    { 
+      "id": 3, 
+      "nome": "Teresa"
+    }
+  ],
   "alunos": [
     {
       "id": 1,
       "nome": "Filipe",
-      "sobrenome": "Silva"
+      "sobrenome": "Silva",
+      "professor" : {
+        "id": 1, 
+        "nome": "Robson"
+      }
     },
     {
       "id": 2,
       "nome": "Gustavo",
-      "sobrenome": "Pereira"
+      "sobrenome": "Pereira",
+      "professor" : {
+        "id": 2, 
+        "nome": "Joao"
+      }
     }
   ]
 }
