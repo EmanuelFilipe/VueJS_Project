@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Alunos />
+    <Nav />
+    <div class="marginPrincipal">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import Alunos from './components/Aluno/Alunos.vue'
+import Nav from './components/_nav/Nav'
 
 export default {
   name: 'App',
   components: {
-    Alunos
+    Nav
   }
 }
 </script>
@@ -79,7 +82,12 @@ table tr td {
     background-color: #fa4430;
 }
 
-#app {
+.marginPrincipal{
+  width: 50%;
+  margin: auto;
+}
 
+#app {
+  width: 100%;
 }
 </style>
