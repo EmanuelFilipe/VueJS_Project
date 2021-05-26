@@ -12,7 +12,10 @@
           <!-- :key="index" cada linha da tabela terá uma chave distinta -->
           <tr v-for="(professor, index) in Professores" :key="index">
             <td>{{professor.id}}</td>
-            <td>{{professor.nome}} {{professor.sobrenome}}</td>
+            <!-- tag="td" informa que esse elemento HTML é um td -->
+            <router-link to="/alunos" tag="td" style="cursor: pointer;">
+              {{professor.nome}} {{professor.sobrenome}}
+            </router-link>
             <td>
               3
             </td>

@@ -34,4 +34,9 @@
             font-weight: bold;
 
         }
+
+        nav .router-link-active {
+            background-color: rgb(160, 160, 160);
+            color: white;
+        }
 </style>
