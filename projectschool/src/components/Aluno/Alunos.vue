@@ -41,14 +41,22 @@ export default {
   data(){
     return {
       titulo: 'Aluno',
+      professorid: this.$route.params.prof_id, //pegando parametro na rota pelo nome 
       nome: '',
       alunos: []
     }
   },
   created(){
-    this.$http.get('http://localhost:3000/alunos')
-              .then(res => res.json())
-              .then(alunos => this.alunos = alunos) //alunos é o retorno da linha acima 'res.json()'
+    if (this.professorid) { 
+      this.$http.get('http://localhost:3000/alunos?professor.id=' + this.professorid)
+                .then(res => res.json())
+                .then(alunos => this.alunos = alunos) //alunos é o retorno da linha acima 'res.json()'
+    }
+    else {
+      this.$http.get('http://localhost:3000/alunos')
+                .then(res => res.json())
+                .then(alunos => this.alunos = alunos) //alunos é o retorno da linha acima 'res.json()'
+    }
   },
   props: {
   },

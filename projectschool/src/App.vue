@@ -2,7 +2,8 @@
   <div id="app">
     <Nav />
     <div class="marginPrincipal">
-      <router-view></router-view>
+      <!-- :key="$route.fullPath" || pede para analisar a rota toda... sem ele, analisa somente se houve alteração no compomente -->
+      <router-view :key="$route.fullPath"></router-view> 
     </div>
   </div>
 </template>

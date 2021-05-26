@@ -19,8 +19,8 @@
       "nome": "Filipe",
       "sobrenome": "Silva",
       "professor" : {
-        "id": 1, 
-        "nome": "Robson"
+        "id": 2, 
+        "nome": "Joao"
       }
     },
     {
@@ -28,8 +28,8 @@
       "nome": "Gustavo",
       "sobrenome": "Pereira",
       "professor" : {
-        "id": 2, 
-        "nome": "Joao"
+        "id": 3, 
+        "nome": "Teresa"
       }
     }
   ]

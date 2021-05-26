@@ -13,7 +13,7 @@
           <tr v-for="(professor, index) in Professores" :key="index">
             <td>{{ professor.id }}</td>
             <!-- tag="td" informa que esse elemento HTML é um td -->
-            <router-link to="/alunos" tag="td" style="cursor: pointer;">
+            <router-link v-bind:to="`/alunos/${professor.id}`" tag="td" style="cursor: pointer;">
               {{ professor.nome }} {{ professor.sobrenome }}
             </router-link>
             <td>
