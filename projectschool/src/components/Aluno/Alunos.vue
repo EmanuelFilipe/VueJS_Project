@@ -1,7 +1,8 @@
 <template>
   <div>
-    <Titulo texto="Alunos" />
-    <div>
+    <!-- ao colocar o bind a expressão vira automaticamente javascript -->
+    <Titulo :texto="professorid != undefined ? 'Professor(a): ' + professor.nome : 'Todos os Alunos'" />
+    <div v-if="professorid != undefined">
       <input type="text" placeholder="Nome do Aluno" v-model="nome" @keyup.enter="addAluno()">&nbsp;
       <button class="btn btn-input" @click="addAluno()">Adicionar</button>
     </div>
@@ -16,7 +17,9 @@
           <!-- :key="index" cada linha da tabela terá uma chave distinta -->
           <tr v-for="(aluno, index) in alunos" :key="index">
             <td>{{aluno.id}}</td>
-            <td>{{aluno.nome}} {{aluno.sobrenome}}</td>
+            <router-link :to="`/AlunoDetalhe/${aluno.id}`" tag="td" style="cursor: pointer">
+              {{aluno.nome}} {{aluno.sobrenome}}
+            </router-link>
             <td>
               <button class="btn btn-danger" @click="remover(aluno)">Remover</button>
             </td>
@@ -42,12 +45,14 @@ export default {
     return {
       titulo: 'Aluno',
       professorid: this.$route.params.prof_id, //pegando parametro na rota pelo nome 
+      professor: {},
       nome: '',
       alunos: []
     }
   },
   created(){
     if (this.professorid) { 
+      this.carregarProfessores();
       this.$http.get('http://localhost:3000/alunos?professor.id=' + this.professorid)
                 .then(res => res.json())
                 .then(alunos => this.alunos = alunos) //alunos é o retorno da linha acima 'res.json()'
@@ -64,7 +69,11 @@ export default {
     addAluno() {
       let _aluno = { 
         nome: this.nome,
-        sobrenome: ''
+        sobrenome: '',
+        professor: {
+          id: this.professor.id,
+          nome: this.professor.nome
+        }
       }
 
       this.$http.post('http://localhost:3000/alunos', _aluno)
@@ -80,6 +89,14 @@ export default {
                   let indice = this.alunos.indexOf(aluno);
                   this.alunos.splice(indice, 1);
                 })
+    },
+    carregarProfessores() {
+       this.$http
+           .get("http://localhost:3000/professores/" + this.professorid)
+           .then((res) => res.json())
+           .then(professor => {
+              this.professor = professor
+            }); 
     }
   },
 }

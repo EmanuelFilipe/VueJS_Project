@@ -1,15 +1,15 @@
 {
   "professores": [
-    { 
-      "id": 1, 
+    {
+      "id": 1,
       "nome": "Robson"
     },
-    { 
-      "id": 2, 
+    {
+      "id": 2,
       "nome": "Joao"
     },
-    { 
-      "id": 3, 
+    {
+      "id": 3,
       "nome": "Teresa"
     }
   ],
@@ -18,8 +18,9 @@
       "id": 1,
       "nome": "Filipe",
       "sobrenome": "Silva",
-      "professor" : {
-        "id": 2, 
+      "dataNasc": "10/11/1986",
+      "professor": {
+        "id": 2,
         "nome": "Joao"
       }
     },
@@ -27,10 +28,28 @@
       "id": 2,
       "nome": "Gustavo",
       "sobrenome": "Pereira",
-      "professor" : {
-        "id": 3, 
+      "professor": {
+        "id": 3,
         "nome": "Teresa"
       }
+    },
+    {
+      "nome": "Alex",
+      "sobrenome": "",
+      "professor": {
+        "id": 1,
+        "nome": "Robson"
+      },
+      "id": 3
+    },
+    {
+      "nome": "Maria Lupes",
+      "sobrenome": "",
+      "professor": {
+        "id": 2,
+        "nome": "Joao"
+      },
+      "id": 4
     }
   ]
 }

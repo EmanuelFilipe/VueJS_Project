@@ -65,7 +65,7 @@ export default {
       });
     },
 
-    carregarProfessores(){
+    carregarProfessores() {
        this.$http
       .get("http://localhost:3000/professores")
       .then((res) => res.json())
