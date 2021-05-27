@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "0dstbbD5j9ifPfkyjovW9XbEtgmxUFIszvQ4SOq1MCiv4iMHDi62fWnAULJHtehqayls8YOYOYJlfaJ8jH4l/A==",
+  "success": true,
+  "projectFilePath": "F:\\Cursos\\VueJS\\ProjectSchool_API\\ProjectSchool_API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cloud\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\cloud\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\cloud\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\cloud\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\cloud\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\cloud\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
