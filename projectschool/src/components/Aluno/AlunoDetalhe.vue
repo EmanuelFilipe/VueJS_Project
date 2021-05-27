@@ -1,7 +1,8 @@
 <template>
     <div>
         <Titulo :texto="`Aluno: ${aluno.nome}`" />
-
+        <button>Editar</button> ||
+        <button>Cancelar</button>
         <table>
             <tbody>
                 <tr>
@@ -35,6 +36,12 @@
                     <td>Professor:</td>
                     <td>
                         <label>{{aluno.professor.nome}}</label>
+                        <select v-model="aluno.professor">
+                            <option v-for="(professor, index) in Professores" 
+                                :key="index" v-bind:value="professor" >
+                                {{professor.nome}}
+                            </option>
+                        </select>
                     </td>
                 </tr>
             </tbody>
@@ -51,6 +58,7 @@ import Titulo from '../_Shared/Titulo'
         },
         data() {
             return {
+                Professores: [],
                 aluno: {},
                 id: this.$route.params.id
             }
@@ -59,6 +67,12 @@ import Titulo from '../_Shared/Titulo'
             this.$http.get('http://localhost:3000/alunos/' + this.id)
                       .then(res => res.json())
                       .then(aluno => this.aluno = aluno) //alunos é o retorno da linha acima 'res.json()'
+
+            this.$http.get("http://localhost:3000/professores")
+                      .then((res) => res.json())
+                      .then(professores => {
+                            this.Professores = professores;
+                       }); 
         },
         methods: {
             
