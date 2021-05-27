@@ -34,7 +34,7 @@
     .voltar{
         width: 50%;
         position: absolute;
-        margin-top: 25px;
+        margin-top: 15px;
     }
 
     .btnVoltar{

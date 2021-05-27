@@ -3,26 +3,26 @@
     <Nav />
     <div class="marginPrincipal">
       <!-- :key="$route.fullPath" || pede para analisar a rota toda... sem ele, analisa somente se houve alteração no compomente -->
-      <router-view :key="$route.fullPath"></router-view> 
+      <router-view :key="$route.fullPath"></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import Nav from './components/_nav/Nav'
+import Nav from "./components/_nav/Nav";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Nav
-  }
-}
+    Nav,
+  },
+};
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
-body{
+body {
   margin: 0;
   background-color: #eee;
   font-family: "Montserrat", sans-serif;
@@ -30,12 +30,13 @@ body{
   justify-items: center;
 }
 
-body, html{
+body,
+html {
   margin: 0;
   height: 100%;
 }
 
-table{
+table {
   margin: 0px;
   padding: 0px;
   list-style-type: none;
@@ -45,7 +46,7 @@ table{
 table thead th {
   background-color: rgb(184, 208, 216) !important;
   font-size: 1.2em;
-  padding: 10px 0px; 
+  padding: 10px 0px;
   text-align: center !important;
 }
 
@@ -62,15 +63,14 @@ table tr td {
 }
 
 .btn {
-
   border: 1px solid black;
   border-bottom: 3px solid black;
   border-radius: 5px;
   color: white;
+  font-size: 1.5em;
   font-weight: bold;
   padding: 10px 20px;
   cursor: pointer;
-
 }
 
 .btn:hover {
@@ -79,11 +79,11 @@ table tr td {
   border-bottom: 1px solid black;
 }
 
-.btn-danger{
-    background-color: #fa4430;
+.btn-danger {
+  background-color: #fa4430;
 }
 
-.marginPrincipal{
+.marginPrincipal {
   width: 50%;
   margin: auto;
 }

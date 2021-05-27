@@ -1,8 +1,8 @@
 <template>
     <div>
         <!-- :texto e :btnVoltar são parametros declarados no componente Titulo.vue -->
-        <Titulo :texto="`Aluno: ${aluno.nome}`" :btnVoltar="false">
-          <button class="btn btnEditar" @click="editar()">Editar</button>  
+        <Titulo :texto="`Aluno: ${aluno.nome}`" :btnVoltar="!visualizando">
+            <button v-show="visualizando" class="btn btnEditar" @click="editar()">Editar</button>  
         </Titulo>
  
         <table id="table">
@@ -16,29 +16,29 @@
                 <tr>
                     <td class="colPequeno">Nome:</td>
                     <td>
-                        <label>{{aluno.nome}}</label>
-                        <input v-model="aluno.nome" type="text" />
+                        <label v-show="visualizando">{{aluno.nome}}</label>
+                        <input v-show="!visualizando" v-model="aluno.nome" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td class="colPequeno">Sobrenome:</td>
                     <td>
-                        <label>{{aluno.sobrenome}}</label>
-                        <input v-model="aluno.sobrenome" type="text" />
+                        <label v-show="visualizando">{{aluno.sobrenome}}</label>
+                        <input v-show="!visualizando" v-model="aluno.sobrenome" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td class="colPequeno">Data Nascimento:</td>
                     <td>
-                        <label>{{aluno.dataNasc}}</label>
-                        <input v-model="aluno.dataNasc" type="text" />
+                        <label v-show="visualizando">{{aluno.dataNasc}}</label>
+                        <input v-show="!visualizando" v-model="aluno.dataNasc" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td class="colPequeno">Professor:</td>
                     <td>
-                        <label>{{aluno.professor.nome}}</label>
-                        <select v-model="aluno.professor">
+                        <label v-show="visualizando">{{aluno.professor.nome}}</label>
+                        <select v-show="!visualizando" v-model="aluno.professor">
                             <option v-for="(professor, index) in Professores" 
                                 :key="index" v-bind:value="professor" >
                                 {{professor.nome}}
@@ -48,6 +48,14 @@
                 </tr>
             </tbody>
         </table>
+
+        <div style="margin-top: 10px">
+            <div v-if="!visualizando">
+                <button @click="salvar()" class="btn btnSalvar">Salvar</button>
+                <button @click="cancelar()" class="btn btnCancelar">Cancelar</button>
+
+            </div>
+        </div>
     </div>
 </template>
 
@@ -55,6 +63,8 @@
 import Titulo from '../_Shared/Titulo'
 
     export default {
+        props: {          
+        },
         components: {
             Titulo
         },
@@ -62,7 +72,8 @@ import Titulo from '../_Shared/Titulo'
             return {
                 Professores: [],
                 aluno: {},
-                id: this.$route.params.id
+                id: this.$route.params.id,
+                visualizando: true
             }
         },
         created() {
@@ -78,7 +89,13 @@ import Titulo from '../_Shared/Titulo'
         },
         methods: {
             editar(){
-                alert('teste')
+                this.visualizando = !this.visualizando;
+            },
+            salvar() {
+
+            },
+            cancelar() {
+                this.visualizando = !this.visualizando;
             }
         },
     }
@@ -88,6 +105,16 @@ import Titulo from '../_Shared/Titulo'
     .btnEditar{
         float: right;
         background-color: rgb(76,186,249);
+    }
+
+    .btnSalvar{
+        float: right;
+        background-color: rgb(79,196,68);
+    }
+
+    .btnCancelar{
+        float: left;
+        background-color: red
     }
     .colPequeno{
         width: 20%;
