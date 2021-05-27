@@ -11,12 +11,12 @@
         <tbody v-if="Professores.length">
           <!-- :key="index" cada linha da tabela terá uma chave distinta -->
           <tr v-for="(professor, index) in Professores" :key="index">
-            <td>{{ professor.id }}</td>
+            <td class="colPequeno">{{ professor.id }}</td>
             <!-- tag="td" informa que esse elemento HTML é um td -->
             <router-link v-bind:to="`/alunos/${professor.id}`" tag="td" style="cursor: pointer;">
               {{ professor.nome }} {{ professor.sobrenome }}
             </router-link>
-            <td>
+            <td class="colPequeno">
               {{professor.qtdAlunos}}
             </td>
           </tr>
@@ -78,4 +78,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+  .colPequeno {
+    text-align: center; 
+    width: 15%;
+  }
+</style>

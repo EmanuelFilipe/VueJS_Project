@@ -60,6 +60,9 @@ table tr td {
 
 .colPequeno {
   width: 5%;
+  text-align: right;
+  background-color: rgb(125, 217, 245);
+  font-weight: bold;
 }
 
 .btn {
@@ -67,7 +70,7 @@ table tr td {
   border-bottom: 3px solid black;
   border-radius: 5px;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
   padding: 10px 20px;
   cursor: pointer;
@@ -81,6 +84,7 @@ table tr td {
 
 .btn-danger {
   background-color: #fa4430;
+  font-size: 0.8em;
 }
 
 .marginPrincipal {

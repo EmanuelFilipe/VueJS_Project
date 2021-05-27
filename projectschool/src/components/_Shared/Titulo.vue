@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="divTitulo">
-            <h1>{{texto}}</h1>
+            <h2>{{texto}}</h2>
             <div class="voltar">
                 <!-- slot - permite incluir outros elementos dentro do espaço daquele componente -->
                 <slot></slot>

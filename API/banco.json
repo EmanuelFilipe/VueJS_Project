@@ -20,8 +20,8 @@
       "sobrenome": "Silva",
       "dataNasc": "10/11/1986",
       "professor": {
-        "id": 2,
-        "nome": "Joao"
+        "id": 1,
+        "nome": "Robson"
       }
     },
     {
@@ -34,22 +34,13 @@
       }
     },
     {
-      "nome": "Alex",
-      "sobrenome": "",
-      "professor": {
-        "id": 1,
-        "nome": "Robson"
-      },
-      "id": 3
-    },
-    {
+      "id": 4,
       "nome": "Maria Lupes",
       "sobrenome": "",
       "professor": {
-        "id": 2,
-        "nome": "Joao"
-      },
-      "id": 4
+        "id": 3,
+        "nome": "Teresa"
+      }
     }
   ]
 }

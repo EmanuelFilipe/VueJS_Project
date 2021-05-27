@@ -51,7 +51,7 @@
 
         <div style="margin-top: 10px">
             <div v-if="!visualizando">
-                <button @click="salvar()" class="btn btnSalvar">Salvar</button>
+                <button @click="salvar(aluno)" class="btn btnSalvar">Salvar</button>
                 <button @click="cancelar()" class="btn btnCancelar">Cancelar</button>
 
             </div>
@@ -91,8 +91,17 @@ import Titulo from '../_Shared/Titulo'
             editar(){
                 this.visualizando = !this.visualizando;
             },
-            salvar() {
+            salvar(aluno) {
+                let _alunoEditado = {
+                    id: aluno.id,
+                    nome: aluno.nome,
+                    sobrenome: aluno.sobrenome,
+                    dataNasc: aluno.dataNasc,
+                    professor: aluno.professor
+                }
 
+                this.$http.put(`http://localhost:3000/alunos/${_alunoEditado.id}`, _alunoEditado);
+                this.visualizando = !this.visualizando;
             },
             cancelar() {
                 this.visualizando = !this.visualizando;
@@ -118,9 +127,6 @@ import Titulo from '../_Shared/Titulo'
     }
     .colPequeno{
         width: 20%;
-        text-align: right;
-        background-color: rgb(125, 217, 245);
-        font-weight: bold;
     }
 
     input, select {
