@@ -17,11 +17,13 @@ namespace ProjectSchool_API.Controllers
             _repository = repository;
         }
 
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                return Ok();
+                var result = await _repository.GetAllAlunosAsync(true);
+
+                return Ok(result);
             }
             catch (System.Exception)
             {
@@ -29,11 +31,29 @@ namespace ProjectSchool_API.Controllers
             }
         }
 
-        public IActionResult Get(int id)
+        [HttpGet("ByProfessor/{professorId}")]
+        public async Task<IActionResult> GetProfessorById(int professorId)
         {
             try
             {
-                return Ok();
+                var result = await _repository.GetAlunosByProfessorIdAsync(professorId, true);
+
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAlunoById(int id)
+        {
+            try
+            {
+                var result = await _repository.GetAlunoByIdAsync(id, true);
+
+                return Ok(result);
             }
             catch (System.Exception)
             {
@@ -60,29 +80,53 @@ namespace ProjectSchool_API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id)
+        public async Task<IActionResult> Put(int id, Aluno model)
         {
             try
             {
-                return Ok();
+                var aluno = await _repository.GetAlunoByIdAsync(id, false);
+                
+                if(aluno == null) return NotFound();
+
+                 _repository.Update(model);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    aluno = await _repository.GetAlunoByIdAsync(id, true);
+                    return Created($"/api/aluno/{model.Id}", aluno);
+                }
             }
             catch (System.Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
+
+            return BadRequest();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                return Ok();
+                 var aluno = await _repository.GetAlunoByIdAsync(id, false);
+                
+                if(aluno == null) return NotFound();
+
+                 _repository.Delete(aluno);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    aluno = await _repository.GetAlunoByIdAsync(id, true);
+                    return Ok();
+                }
             }
             catch (System.Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
+
+            return BadRequest();
         }
     }
 }

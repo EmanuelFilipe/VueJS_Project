@@ -62,7 +62,7 @@ namespace ProjectSchool_API.Data.Interface
             return await query.ToArrayAsync();
         }
 
-        public async Task<Aluno> GetAlunoByIdAsync(int alunoId, bool includeProfessor)
+        public async Task<Aluno> GetAlunoByIdAsync(int alunoId, bool includeProfessor = false)
         {
             IQueryable<Aluno> query = _context.Alunos;
 

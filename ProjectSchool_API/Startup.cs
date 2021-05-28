@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +41,10 @@ namespace ProjectSchool_API
                 x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.AddMvc().AddJsonOptions(o => {
+                o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
+            
             services.AddScoped<IRepository, Repository>();
         }
 
