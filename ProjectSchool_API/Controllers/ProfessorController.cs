@@ -1,5 +1,8 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjectSchool_API.Data.Interface;
+using ProjectSchool_API.Models;
 
 namespace ProjectSchool_API.Controllers
 {
@@ -7,9 +10,11 @@ namespace ProjectSchool_API.Controllers
     [ApiController]
     public class ProfessorController : Controller
     {
-        public ProfessorController()
-        {
+        private IRepository _repository;
 
+        public ProfessorController(IRepository repository)
+        {
+            _repository = repository;
         }
 
         public IActionResult Get()
@@ -30,16 +35,21 @@ namespace ProjectSchool_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public async Task<IActionResult> Post(Professor model)
         {
             try
             {
-                return Ok();
+                _repository.Add(model);
+
+                if(await _repository.SaveChangesAsync())
+                    return Created($"/api/professor/{model.Id}", model);
             }
             catch (System.Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
+
+            return BadRequest();
         }
 
         [HttpPut("{id}")]
